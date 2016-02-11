@@ -108,7 +108,7 @@ class GoogleMapAPI {
      *
      * @var bool
      */
-    var $mobile=false;
+    var $mobile=True;
     
     /**
      * The viewport meta tag allows more values than these defaults; you can get more info here: http://www.html-5.com/metatags/index.html#viewport-meta-tag
@@ -309,7 +309,7 @@ class GoogleMapAPI {
      *
      * @var string
      */
-    var $height = '800px';
+    var $height = '500px';
 
     /**
      * message that pops up when the browser is incompatible with Google Maps.
@@ -1621,6 +1621,7 @@ class GoogleMapAPI {
         return $this->setMarkerIconKey($iconImage,$iconShadowImage,$iconAnchorX,$iconAnchorY,$infoWindowAnchorX,$infoWindowAnchorY);       
     }
     
+
     /**
      * function to check if icon is in  class "marker_iconset", if it is, 
      * returns the key, if not, creates a new array indice and returns the key
@@ -1900,8 +1901,8 @@ class GoogleMapAPI {
             //$_output .= 'if (GBrowserIsCompatible()) {' . "\n";
         }
         
-        /*
-         *TODO:Update with local search bar once implemented in V3 api 
+        
+         //TODO:Update with local search bar once implemented in V3 api 
 		$strMapOptions = "";
 		if($this->local_search){
 			$_output .= "
@@ -1911,13 +1912,13 @@ class GoogleMapAPI {
 					adsOptions: {
 					    client: '".$this->ads_pub_id."',
 					    channel: '".$this->ads_channel."',
-					    language: 'en'
+					    language: 'es'
 					":"")."
 				};
 			";            
 			$strMapOptions .= ", mapOptions";
 		}
-        */
+     
 		
 		if($this->display_map){
 			$_script .= sprintf('var mapObj%s = document.getElementById("%s");', $_key, $this->map_id) . "\n";

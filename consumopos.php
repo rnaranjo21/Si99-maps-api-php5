@@ -118,7 +118,7 @@ text-align:center;
 
 </style>
 <?php
-echo '<div  id="dvData" >';
+echo '<div  id="dvData" style="  float:left;" >';
 //llamado WSDL
 $client =new SoapClient("https://api.fm-web.us/webservices/CoreWebSvc/CoreWS.asmx?WSDL",array( "trace" => 1 )); 
 $client2 = new SoapClient("https://api.fm-web.us/webservices/PositioningWebSvc/PositioningWS.asmx?WSDL",array( "trace" => 1 ));
@@ -190,7 +190,7 @@ echo '</tr>';
 include_once("php-google-map-api-master/releases/3.0/src/GoogleMap.php");
 include_once("php-google-map-api-master/releases/3.0/src/JSMin.php");
 $MAP_OBJECT = new GoogleMapAPI(); $MAP_OBJECT->_minify_js = isset($_REQUEST["min"])?FALSE:TRUE;
-$marker__location = "imagenes/622.png";
+$marker__location ="http://www.bradwedell.com/phpgooglemapapi/demos/img/blue_triangle_icon.png";
 $default_icon = $MAP_OBJECT->setMarkerIcon($marker__location);
 for($i=4;$i<count($vehi);$i++){
 $vehiID=$orgVehi->GetVehiclesListResult->Vehicle[$i]->ID;
@@ -208,7 +208,7 @@ $date = new DateTime($positime);
 $location=$orglocal->GetNearestLocationResult->OriginLongitude;
 $location1=$orglocal->GetNearestLocationResult->OriginLatitude;
 $location2=$orglocal->GetNearestLocationResult->LocationName;
-$default_icon=$MAP_OBJECT->addMarkerByCoords($posi2,$posi1,$location2,$vehiDes);
+$MAP_OBJECT->addMarkerByCoords($posi2,$posi1,$location2,$vehiDes);
 
 echo '<tr>';
 echo '<th>';
@@ -240,14 +240,16 @@ echo '</table>';
  echo '</div>';
 
  ?> 
+ <br>
+ <br>
  <center>
-  <div>
+  <div >
   <?=$MAP_OBJECT->getHeaderJS();?>
 <?=$MAP_OBJECT->getMapJS();?>
 <?=$MAP_OBJECT->printOnLoad();?>
  <?=$MAP_OBJECT->printMap();?>
 </div>
-<center>
+
  </body style ="zoom:200;" >
  </center>
  <br>

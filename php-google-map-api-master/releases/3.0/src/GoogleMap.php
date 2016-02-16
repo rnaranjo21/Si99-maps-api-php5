@@ -2335,7 +2335,8 @@ class GoogleMapAPI {
 			       var marker_options = {
 			        position: point,
 			        map: map,
-			        title: title};  
+			        title: title,
+                    icon:'imagenes/bus.png'};  
 			    if(icon!=''){marker_options.icon = icon;}
 			    if(icon_shadow!=''){marker_options.shadow = icon_shadow;}
 			    

@@ -10,25 +10,44 @@ header("refresh:60;url=$self");
 <!DOCTYPE html>
 <html>
 <head>
-  <link href="css/Estilo.css" rel="stylesheet" type="text/css"/>  
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <link type="text/css" rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,300,700">
+    <link type="text/css" rel="stylesheet" href="http://fonts.googleapis.com/css?family=Oswald:400,700,300">
+    <link type="text/css" rel="stylesheet" href="styles/jquery-ui-1.10.4.custom.min.css">
+    <link type="text/css" rel="stylesheet" href="styles/font-awesome.min.css">
+    <link type="text/css" rel="stylesheet" href="styles/bootstrap.min.css">
+    <link type="text/css" rel="stylesheet" href="styles/animate.css">
+    <link type="text/css" rel="stylesheet" href="styles/all.css">
+    <link type="text/css" rel="stylesheet" href="styles/main.css">
+    <link type="text/css" rel="stylesheet" href="styles/style-responsive.css">
+    <link type="text/css" rel="stylesheet" href="styles/zabuto_calendar.min.css">
+    <link type="text/css" rel="stylesheet" href="styles/pace.css">
+    <link type="text/css" rel="stylesheet" href="styles/jquery.news-ticker.css">
+         <link href="css/Estilo.css" rel="stylesheet" type="text/css"/>  
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<script src="jquery-1.11.1.min.js" type="text/javascript"></script> 
- <script src="http://code.jquery.com/jquery-1.9.0.min.js"></script>
+     <script type="text/javascript" src="js/ext/jquery-1.8.2.min.js"></script>
+    <script type="text/javascript" src="js/buscar-en-tabla.js"></script>
   <title>Si99</title>
-                  <header>
-             <h2>Tabla Ubicaciones Bahias Si99</h2>
-                  <nav id="nav">
-                     <a href="#" id="btnExport" style="width:50px;height:50px"> <img src="imagenes/reportes.png" ></a>
-                     <a id="map1" href="maps.php" style="width:50px;height:50px"> <img src="imagenes/maps.png" style="width:50px;height:50px" ></a>
-                     <a href="cerrar.php" Id="current-page-item" style="width:50px;height:50px"><img src="imagenes/logout.png" ></a>
-                       </nav>
-                           </header>
-                                </head>                         
+</head>
+<div id="header-topbar-option-demo" class="page-header-topbar">
+            <nav id="topbar" role="navigation" style="margin-bottom: 0;" data-step="3" class="navbar navbar-default navbar-static-top">
+    <div class="navbar-header">
+           <a id="logo" href="#" class="navbar-brand"><span class="logo-text">Si99</span></a></div>
+<div class="topbar-main"></a>
+            <ul class="nav navbar navbar-top-links navbar-right mbn">
+               <ul class="nav navbar navbar-top-links navbar-right mbn">
+                            <li><a href="#" id="btnExport"> <img src="imagenes/reportes.png" >Exportar Archivo a Excel</a></li>
+                            <li><a href="cerrar.php"> <img src="imagenes/logout.png" >Cerrar Sesion</a></li>
+                        </ul>
+                    </li>
+  </div>         
+      </div>  
+         </div>           
+          
  <br>
  <body>
-  <div id="wrapper">
- </div>
-<div id="layer">
+   <div id="layer">
   <div id="layerc">
     <p>Descargando Informaciòn...</p>
     <div id="layerClock"></div>
@@ -37,7 +56,7 @@ header("refresh:60;url=$self");
 <script type="text/javascript">
 $(document).ready(function(){
   
-  $("#dvData").html(function(){
+  $(".panel-heading").html(function(){
     // Una vez se ha cargado el archivo, escondemos el reloj
     $("#layer").hide();
   });
@@ -45,12 +64,12 @@ $(document).ready(function(){
 </script>
   <script>
     $("#btnExport").click(function(e) {
-        window.open('data:application/vnd.ms-excel,' + encodeURIComponent($('#dvData').html()));
+        window.open('data:application/vnd.ms-excel,' + encodeURIComponent($('.panel-body').html()));
         e.preventDefault();
     });
     </script>
 
-    
+     
 <style type="text/css">
 body { 
   background-image: url(imagenes/Fondo.jpg);
@@ -65,60 +84,33 @@ body {
   
 background-image: url('imagenes/loading.gif');
 }
-table {
-border-radius: 18px;
-width:100%;
-background:#f7fbff;
-border-top:2px solid #a9cae8;
-border-right:2px solid #a9cae8;
-margin:1 auto;
-border-collapse:collapse;
-
+input[type="search"]{
+      padding: 5px;
+      background: url(search-white.png) no-repeat 10px 6px #fcfcfc;
+    border: 1px solid #d1d1d1;
+    font: bold 12px Arial,Helvetica,Sans-serif;
+    color: #bebebe;
+    padding: 6px 15px 6px 35px;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    border-radius: 20px;
+    text-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
+    -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15) inset;
+    -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15) inset;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15) inset;
+    -webkit-transition: all 0.7s ease 0s;
+    -moz-transition: all 0.7s ease 0s;
+    -o-transition: all 0.7s ease 0s;
+    transition: all 0.7s ease 0s;
+    }    
+.panel-body{
+  height: 450px;
+    overflow: scroll;
 }
-td {
-border-radius: 18px;
-color:#678197;
-border-bottom:2px solid #a9cae8;
-border-left:2px solid #a9cae8;
-padding:.3em 1em;
-text-align:center;
-}
-
-tr {
-   border-radius: 18px;
-  font: bold 11px "Trebuchet MS", Verdana, Arial, Helvetica,
-  sans-serif;
-  color: #6D929B;
-  border-right: 2px solid #a9cae8;
-  border-bottom: 2px solid #a9cae8;
-  border-top: 2px solid #a9cae8;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  text-align: left;
-  padding: 6px 6px 6px 12px;
-  }
-
-th {
-  width:;
-  border-radius: 18px;
-color:#678197;
-border-bottom:2px solid #a9cae8;
-border-left:2px solid #a9cae8;
-padding:.3em 1em;
-text-align:center;
-}
-#dvData {
-    border-radius: 25px;
-    border: 10px solid #73AD21;
-    padding: 20px; 
-    position: relative;
-    left: 100px;
-    width: 80%;
-}
-
 </style>
+<div>
 <?php
-echo '<div  id="dvData" style="  float:left;" >';
+
 //llamado WSDL
 $client =new SoapClient("https://api.fm-web.us/webservices/CoreWebSvc/CoreWS.asmx?WSDL",array( "trace" => 1 )); 
 $client2 = new SoapClient("https://api.fm-web.us/webservices/PositioningWebSvc/PositioningWS.asmx?WSDL",array( "trace" => 1 ));
@@ -170,11 +162,17 @@ $paramvehi=array("TokenHeader");
 $orgVehi =$client3->__soapCall('GetVehiclesList',array($paramvehi));
 //mostrar result en tablas 
 $vehi= $orgVehi->GetVehiclesListResult->Vehicle;
-echo '<table>' ;
+echo '<div class="panel panel-blue" style="background:#FFF;float:left">';
+echo '<br>';
+echo'<div class="panel-heading">Ubicacion</div>';
+echo '<br>';
+echo '<label for="txtBuscar">Buscar: </label>';
+echo '<input type="search" id="txtBuscar" autofocus placeholder="Digite el texto">';
+                         echo ' <div class="panel-body">';
+
+echo '<table class="table table-hover table-bordered" id="tblTabla">' ;
+ echo '<thead>';
 echo '<tr>';
-echo '<th>';
-echo "ID";
-echo '</th>';
 echo '<th>';
 echo "BUS";
 echo '</th>';
@@ -185,13 +183,12 @@ echo '<th>';
 echo "Ultima posicion";
 echo '</th>';
 echo '</tr>';
+echo '</thead>';
 //parametros posiscion
 
 include_once("php-google-map-api-master/releases/3.0/src/GoogleMap.php");
 include_once("php-google-map-api-master/releases/3.0/src/JSMin.php");
 $MAP_OBJECT = new GoogleMapAPI(); $MAP_OBJECT->_minify_js = isset($_REQUEST["min"])?FALSE:TRUE;
-$marker__location ="http://www.bradwedell.com/phpgooglemapapi/demos/img/blue_triangle_icon.png";
-$default_icon = $MAP_OBJECT->setMarkerIcon($marker__location);
 for($i=4;$i<count($vehi);$i++){
 $vehiID=$orgVehi->GetVehiclesListResult->Vehicle[$i]->ID;
 $vehiDes=$orgVehi->GetVehiclesListResult->Vehicle[$i]->Description;
@@ -208,52 +205,45 @@ $date = new DateTime($positime);
 $location=$orglocal->GetNearestLocationResult->OriginLongitude;
 $location1=$orglocal->GetNearestLocationResult->OriginLatitude;
 $location2=$orglocal->GetNearestLocationResult->LocationName;
-$MAP_OBJECT->addMarkerByCoords($posi2,$posi1,$location2,$vehiDes);
-
+$MAP_OBJECT->addMarkerByCoords($posi2,$posi1,$vehiDes,$location2);
+ echo'  <tbody>';                                  
 echo '<tr>';
-echo '<th>';
-print($vehiID);
-echo '</th>';
-echo '<th>';
+echo '<td>';
 print($vehiDes);
-echo '</th>';
-echo '<th>';
+echo '</td>';
+echo '<td>';
 print($location2);
-echo '</th>';
-
-echo '<th>';
+echo '</td>';
+echo '<td>';
 print $date->format('d/m/Y (H:i:s)');
-echo '</th>';
-echo '<th>';
-print ($location);
-echo '</th>';
-echo '<th>';
-print ($location1);
-echo '</th>';
-
-
+echo '</td>';
 echo '</tr>';
-
-   
+echo'  </tbody>';  
 }
 echo '</table>';
  echo '</div>';
+echo '</div>';
 
  ?> 
- <br>
- <br>
- <center>
-  <div >
+
+   <div  style="float:Rigth">
   <?=$MAP_OBJECT->getHeaderJS();?>
 <?=$MAP_OBJECT->getMapJS();?>
 <?=$MAP_OBJECT->printOnLoad();?>
  <?=$MAP_OBJECT->printMap();?>
 </div>
+</div>
+<br>
 
- </body style ="zoom:200;" >
- </center>
+ 
  <br>
- <footer>
-  <br>
-<h2>&copy; Desarrollado Por Syscaf S.A.S</h2>
- </footer>
+ <div id="footer">
+                    <div class="copyright">
+                        <a href="http://www.syscaf.com/">2016 © Desarrollado Por IDI de SYSCAF S.A.S</a>
+                          <h4>+57 (1) 746 6892  |  Calle 74A N° 23 - 10  |  info@syscaf.com.co  |  Bogotá - COLOMBIA </h4>
+                      </div>
+ </div>
+  
+   </body>
+ 
+    

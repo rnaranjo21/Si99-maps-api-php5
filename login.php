@@ -1,12 +1,26 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <link type="text/css" rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,300,700">
+    <link type="text/css" rel="stylesheet" href="http://fonts.googleapis.com/css?family=Oswald:400,700,300">
+    <link type="text/css" rel="stylesheet" href="styles/jquery-ui-1.10.4.custom.min.css">
+    <link type="text/css" rel="stylesheet" href="styles/font-awesome.min.css">
+    <link type="text/css" rel="stylesheet" href="styles/bootstrap.min.css">
+    <link type="text/css" rel="stylesheet" href="styles/animate.css">
+    <link type="text/css" rel="stylesheet" href="styles/all.css">
+    <link type="text/css" rel="stylesheet" href="styles/main.css">
+    <link type="text/css" rel="stylesheet" href="styles/style-responsive.css">
+    <link type="text/css" rel="stylesheet" href="styles/zabuto_calendar.min.css">
+    <link type="text/css" rel="stylesheet" href="styles/pace.css">
+    <link type="text/css" rel="stylesheet" href="styles/jquery.news-ticker.css">
+  <link href="css/Estilo.css" rel="stylesheet" type="text/css"/>  
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
 <meta http-equiv="X-UA-Compatible" content="IE=7" />
 <meta content="IE=edge,requiresActiveX=true" http-equiv="X-UA-Compatible" />
 <meta http-equiv="X-UA-Compatible" content="IE=9" />
-<script src="jquery-1.11.1.min.js" type="text/javascript"></script> 
 <link href="css/Estilo.css" rel="stylesheet" type="text/css"/>	
 <title>LOGIN</title>
 <body style="background-image: url(imagenes/Fondo.jpg);">
@@ -44,5 +58,12 @@
 </form>
 </center>
 </body>
-
+<center>
+<div id="footer">
+                    <div class="copyright">
+                        <a href="http://www.syscaf.com/">2016 © Desarrollado Por IDI de SYSCAF S.A.S</a>
+                          <h4>+57 (1) 746 6892  |  Calle 74A N° 23 - 10  |  info@syscaf.com.co  |  Bogotá - COLOMBIA </h4>
+                      </div>
+ </div>
+</center>
 </html>

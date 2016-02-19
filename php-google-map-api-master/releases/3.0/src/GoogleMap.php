@@ -295,7 +295,7 @@ class GoogleMapAPI {
      *
      * @var int
      */
-    var $zoom = 16;
+    var $zoom = 18;
 
     /**
      * determines the map width
@@ -2357,12 +2357,12 @@ class GoogleMapAPI {
 			           for(var i in openers){
 			             var opener = document.getElementById(openers[i]);
 			             opener.on".$this->window_trigger." = function() { 
-			             
+			                
+                            map.setCenter(point);
 			             	infowindow.close();
 			             	infowindow.setContent(html);
 			             	infowindow.open(map,new_marker); 
-			             	map.setCenter(point);
-			          		return false;			             	
+			             	return false;			             	
 			             };
 			           }
 			        }

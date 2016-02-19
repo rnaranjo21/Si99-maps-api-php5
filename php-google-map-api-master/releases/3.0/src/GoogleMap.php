@@ -439,7 +439,7 @@ class GoogleMapAPI {
      *
      * @var string
      */
-    var $_version = '3.0beta';
+    var $_version = '3.0';
 
     /**
      * list of added markers
@@ -2334,14 +2334,16 @@ class GoogleMapAPI {
     	   function createMarker(map, point, title, html, icon, icon_shadow, sidebar_id, openers){
 			       var marker_options = {
 			        position: point,
+                    animation: google.maps.Animation.DROP,
 			        map: map,
 			        title: title,
-                    icon:'imagenes/bus.png'};  
+                    icon:'imagenes/bus-stop-pin.png'};  
 			    if(icon!=''){marker_options.icon = icon;}
 			    if(icon_shadow!=''){marker_options.shadow = icon_shadow;}
 			    
 			    //create marker
 			    var new_marker = new google.maps.Marker(marker_options);
+
 			    if(html!=''){
 					".(($this->info_window)?"
 			        
@@ -2350,7 +2352,7 @@ class GoogleMapAPI {
 			          	infowindow.setContent(html);
 			          	infowindow.open(map,new_marker);
 			        });
-			        
+			       
 					if(openers != ''&&!isEmpty(openers)){
 			           for(var i in openers){
 			             var opener = document.getElementById(openers[i]);
@@ -2359,7 +2361,7 @@ class GoogleMapAPI {
 			             	infowindow.close();
 			             	infowindow.setContent(html);
 			             	infowindow.open(map,new_marker); 
-			             	
+			             	map.setCenter(point);
 			          		return false;			             	
 			             };
 			           }

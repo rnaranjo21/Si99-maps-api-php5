@@ -36,8 +36,7 @@ header("refresh:60;url=$self");
            <a id="logo" href="#" class="navbar-brand"><span class="logo-text">Si99</span></a></div>
 <div class="topbar-main"></a>
             <ul class="nav navbar navbar-top-links navbar-right mbn">
-               <ul class="nav navbar navbar-top-links navbar-right mbn">
-                            <li><a href="#" id="btnExport"> <img src="imagenes/reportes.png" >Exportar Archivo a Excel</a></li>
+                             <li><a href="#" id="btnExport"> <img src="imagenes/reportes.png" >Exportar Archivo a Excel</a></li>
                             <li><a href="cerrar.php"> <img src="imagenes/logout.png" >Cerrar Sesion</a></li>
                         </ul>
                     </li>
@@ -47,6 +46,7 @@ header("refresh:60;url=$self");
           
  <br>
  <body>
+  <div>
    <div id="layer">
   <div id="layerc">
     <p>Descargando Informaciòn...</p>
@@ -69,7 +69,7 @@ $(document).ready(function(){
     });
     </script>
 
-     
+
 <style type="text/css">
 body { 
   background-image: url(imagenes/Fondo.jpg);
@@ -108,7 +108,7 @@ input[type="search"]{
     overflow: scroll;
 }
 </style>
-<div>
+
 <?php
 
 //llamado WSDL
@@ -164,11 +164,11 @@ $orgVehi =$client3->__soapCall('GetVehiclesList',array($paramvehi));
 $vehi= $orgVehi->GetVehiclesListResult->Vehicle;
 echo '<div class="panel panel-blue" style="background:#FFF;float:left">';
 echo '<br>';
-echo'<div class="panel-heading">Ubicacion</div>';
+echo'<div class="panel-heading">Tabla de ubicaciones buses</div>';
 echo '<br>';
-echo '<label for="txtBuscar">Buscar: </label>';
 echo '<input type="search" id="txtBuscar" autofocus placeholder="Digite el texto">';
-                         echo ' <div class="panel-body">';
+echo '<br>';
+ echo ' <div class="panel-body">';
 
 echo '<table class="table table-hover table-bordered" id="tblTabla">' ;
  echo '<thead>';
@@ -205,10 +205,12 @@ $date = new DateTime($positime);
 $location=$orglocal->GetNearestLocationResult->OriginLongitude;
 $location1=$orglocal->GetNearestLocationResult->OriginLatitude;
 $location2=$orglocal->GetNearestLocationResult->LocationName;
-$MAP_OBJECT->addMarkerByCoords($posi2,$posi1,$vehiDes,$location2);
+$marker_id=$MAP_OBJECT->addMarkerByCoords($posi2,$posi1,$vehiDes,$location2);
+$marker_opener= "opener_".$marker_id;
+$MAP_OBJECT->addMarkerOpener($marker_id, $marker_opener);
  echo'  <tbody>';                                  
 echo '<tr>';
-echo '<td>';
+echo '<td id= '.$marker_opener.'>';
 print($vehiDes);
 echo '</td>';
 echo '<td>';
@@ -219,11 +221,11 @@ print $date->format('d/m/Y (H:i:s)');
 echo '</td>';
 echo '</tr>';
 echo'  </tbody>';  
+
 }
 echo '</table>';
  echo '</div>';
 echo '</div>';
-
  ?> 
 
    <div  style="float:Rigth">
@@ -231,6 +233,7 @@ echo '</div>';
 <?=$MAP_OBJECT->getMapJS();?>
 <?=$MAP_OBJECT->printOnLoad();?>
  <?=$MAP_OBJECT->printMap();?>
+
 </div>
 </div>
 <br>
@@ -245,5 +248,5 @@ echo '</div>';
  </div>
   
    </body>
- 
+    </script>
     

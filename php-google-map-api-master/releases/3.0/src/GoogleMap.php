@@ -192,7 +192,7 @@ class GoogleMapAPI {
 	 *
 	 * @var string
 	 */
-	 var $type_controls_style = "DEFAULT";
+	 var $type_controls_style = "HORIZONTAL_BAR";
 
     /**
      * default map type google.maps.MapTypeId.(ROADMAP, SATELLITE, HYBRID, TERRAIN)
@@ -2331,13 +2331,14 @@ class GoogleMapAPI {
      */
     function getCreateMarkerJS() {
     	$_output = "
-    	   function createMarker(map, point, title, html, icon, icon_shadow, sidebar_id, openers){
+    	   function createMarker(map, point, title, html, icon, icon_shadow, sidebar_id, openers,label){
 			       var marker_options = {
 			        position: point,
                     animation: google.maps.Animation.DROP,
 			        map: map,
 			        title: title,
-                    icon:'imagenes/bus-stop-pin.png'};  
+                    label:label,
+                    icon:'imagenes/bus.png'};  
 			    if(icon!=''){marker_options.icon = icon;}
 			    if(icon_shadow!=''){marker_options.shadow = icon_shadow;}
 			    
@@ -2357,8 +2358,7 @@ class GoogleMapAPI {
 			           for(var i in openers){
 			             var opener = document.getElementById(openers[i]);
 			             opener.on".$this->window_trigger." = function() { 
-			                
-                            map.setCenter(point);
+			                map.setCenter(point);
 			             	infowindow.close();
 			             	infowindow.setContent(html);
 			             	infowindow.open(map,new_marker); 

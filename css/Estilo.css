@@ -229,3 +229,8 @@ background-color:#0882a1 ;
      cursor: pointer;
     text-shadow: 0 1px 0 #ddd;
     }
+.maps{
+  position: relative;
+  padding-bottom: 56.25%;
+
+}

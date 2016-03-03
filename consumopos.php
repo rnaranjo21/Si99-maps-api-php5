@@ -12,7 +12,6 @@ header("refresh:60;url=$self");
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="content-language" content="es">
      <link type="text/css" rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,300,700">
     <link type="text/css" rel="stylesheet" href="http://fonts.googleapis.com/css?family=Oswald:400,700,300">
     <link type="text/css" rel="stylesheet" href="styles/jquery-ui-1.10.4.custom.min.css">
@@ -26,17 +25,12 @@ header("refresh:60;url=$self");
     <link type="text/css" rel="stylesheet" href="styles/pace.css">
     <link type="text/css" rel="stylesheet" href="styles/jquery.news-ticker.css">
          <link href="css/Estilo.css" rel="stylesheet" type="text/css"/>  
-          <link type="text/css" rel="stylesheet" href="js/sortable-0.8.0/css/sortable-theme-bootstrap.css">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-
-
+     <link href="css/sortable-theme-bootstrap.css" rel="stylesheet" type="text/css"/>
      <script type="text/javascript" src="js/ext/jquery-1.8.2.min.js"></script>
-
-
-    <script type="text/javascript" src="js/script.js"></script>
-       <script type="text/javascript" src="js/buscar-en-tabla.js"></script>
-    
-     <title>Si99</title>
+    <script type="text/javascript" src="js/buscar-en-tabla.js"></script>
+     <script type="text/javascript" src="js/script.js"></script>
+  <title>Si99</title>
 </head>
 <div id="header-topbar-option-demo" class="page-header-topbar">
             <nav id="topbar" role="navigation" style="margin-bottom: 0;" data-step="3" class="navbar navbar-default navbar-static-top">
@@ -45,36 +39,40 @@ header("refresh:60;url=$self");
 <div class="topbar-main"></a>
             <ul class="nav navbar navbar-top-links navbar-right mbn">
                              <li><a href="#" id="btnExport"> <img src="imagenes/reportes.png" >Exportar Archivo a Excel</a></li>
-                            <li><a href="cerrar.php"> <img src="imagenes/logout.png" >Cerrar Sesión</a></li>
+                            <li><a href="cerrar.php"> <img src="imagenes/logout.png" >Cerrar Sesion</a></li>
                         </ul>
                     </li>
-  </div>    
+  </div>         
       </div>  
          </div>           
           
  <br>
  <body>
-     <div id="layer">
+  <div>
+   <div id="layer">
   <div id="layerc">
-    <p>Descargando Información...</p>
+    <p>Descargando Informaciòn...</p>
     <div id="layerClock"></div>
   </div>
 </div>
 <script type="text/javascript">
 $(document).ready(function(){
-    $(".panel-heading").html(function(){
+  
+  $(".panel-heading").html(function(){
     // Una vez se ha cargado el archivo, escondemos el reloj
     $("#layer").hide();
   });
 });
 </script>
-  <script type="text/javascript">
+  <script>
     $("#btnExport").click(function(e) {
         window.open('data:application/vnd.ms-excel,' + encodeURIComponent($('.panel-body').html()));
         e.preventDefault();
     });
     </script>
-       <style type="text/css">
+
+
+<style type="text/css">
 body { 
   background-image: url(imagenes/Fondo.jpg);
   height: 100%; 
@@ -110,11 +108,9 @@ input[type="search"]{
 .panel-body{
   height: 450px;
     overflow: scroll;
-    position: relative;
-    padding-bottom: 56.25%;
 }
 </style>
-<div>
+
 <?php
 
 //llamado WSDL
@@ -168,31 +164,34 @@ $paramvehi=array("TokenHeader");
 $orgVehi =$client3->__soapCall('GetVehiclesList',array($paramvehi));
 //mostrar result en tablas 
 $vehi= $orgVehi->GetVehiclesListResult->Vehicle;
-?>
+echo '<div class="panel panel-blue" style="background:#FFF;float:left">';
+echo '<br>';
+echo'<div class="panel-heading">Tabla de ubicaciones buses</div>';
+echo '<br>';
+echo '<input type="search" id="txtBuscar" autofocus placeholder="Digite el texto">';
+echo '<br>';
+ echo ' <div class="panel-body">';
 
-<div class="panel panel-blue" style="background:#FFF;float:left">
-
-<div class="panel-heading">Tabla de ubicaciones buses</div>
-<br>
-<input type="search" id="txtBuscar" autofocus placeholder="Digite el texto">
-<br>
- <div class="panel-body">
-<table  id="tblTabla" class="sortable-theme-bootstrap" data-sortable >
-<thead>
-<tr>
-<th>Bus</th>
-<th>Localización</th>
-<th>Ultima posición</th>
-</tr>
-</thead>
-<?php
+echo '<table class="sortable-theme-bootstrap" id="tblTabla" data-sortable>' ;
+ echo '<thead>';
+echo '<tr>';
+echo '<th>';
+echo "Bús";
+echo '</th>';
+echo '<th>';
+echo "Localización";
+echo '</th>';
+echo '<th>';
+echo "Ultima posición";
+echo '</th>';
+echo '</tr>';
+echo '</thead>';
 //parametros posiscion
-
 
 include_once("php-google-map-api-master/releases/3.0/src/GoogleMap.php");
 include_once("php-google-map-api-master/releases/3.0/src/JSMin.php");
 $MAP_OBJECT = new GoogleMapAPI(); $MAP_OBJECT->_minify_js = isset($_REQUEST["min"])?FALSE:TRUE;
-for($i=1;$i<count($vehi);$i++){
+for($i=4;$i<count($vehi);$i++){
 $vehiID=$orgVehi->GetVehiclesListResult->Vehicle[$i]->ID;
 $vehiDes=$orgVehi->GetVehiclesListResult->Vehicle[$i]->Description;
 $paramPosi= array("SpecificVehicleIDs"=>array("short"=>$vehiID));
@@ -208,24 +207,22 @@ $date = new DateTime($positime);
 $location=$orglocal->GetNearestLocationResult->OriginLongitude;
 $location1=$orglocal->GetNearestLocationResult->OriginLatitude;
 $location2=$orglocal->GetNearestLocationResult->LocationName;
-$marker_id=$MAP_OBJECT->addMarkerByCoords($posi2,$posi1,$location2,$vehiDes,$vehiDes);
+$marker_id=$MAP_OBJECT->addMarkerByCoords($posi2,$posi1,$vehiDes,$location2);
 $marker_opener= "opener_".$marker_id;
 $MAP_OBJECT->addMarkerOpener($marker_id, $marker_opener);
-
-echo '<tbody>';                        
+ echo'  <tbody>';                                  
 echo '<tr>';
-echo '<td id='.$marker_opener.'>'; 
-echo $vehiDes;
+echo '<td id= '.$marker_opener.'>';
+print($vehiDes);
 echo '</td>';
 echo '<td>';
-echo $location2;
+print($location2);
 echo '</td>';
 echo '<td>';
-echo $date->format('d/m/Y H:i:s');
+print $date->format('d/m/Y (H:i:s)');
 echo '</td>';
 echo '</tr>';
-echo '</tbody>';
-
+echo'  </tbody>';  
 
 }
 echo '</table>';
@@ -233,8 +230,7 @@ echo '</table>';
 echo '</div>';
  ?> 
 
-   <div class="maps" style="float:Rigth">
-  
+   <div  style="float:Rigth">
   <?=$MAP_OBJECT->getHeaderJS();?>
 <?=$MAP_OBJECT->getMapJS();?>
 <?=$MAP_OBJECT->printOnLoad();?>
@@ -252,6 +248,7 @@ echo '</div>';
                           <h4>+57 (1) 746 6892  |  Calle 74A N° 23 - 10  |  info@syscaf.com.co  |  Bogotá - COLOMBIA </h4>
                       </div>
  </div>
-
+  
    </body>
-   
+    </script>
+    

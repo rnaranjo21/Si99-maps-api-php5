@@ -62,12 +62,12 @@
     $.fn.bdt = function (options, callback) {
 
         var settings = $.extend({
-            pageRowCount: 10,
+            pageRowCount: 50,
             arrowDown: 'fa-angle-down',
             arrowUp: 'fa-angle-up',
             searchFormClass: 'pull-left search-form',
-            pageFieldText: 'Entries per Page:',
-            searchFieldText: 'Search'
+            pageFieldText: 'Entradas por página:',
+            searchFieldText: 'Buscar'
         }, options);
 
         /**
@@ -125,33 +125,33 @@
                                                     .addClass('form-control')
                                                     .append(
                                                         $('<option>', {
-                                                            value: 5,
-                                                            text: 5
+                                                            value: 50,
+                                                            text: 50
                                                         })
                                                     )
                                                     .append(
                                                         $('<option>', {
-                                                            value: 10,
-                                                            text: 10,
+                                                            value: 100,
+                                                            text: 100,
                                                             selected: 'selected'
                                                         })
                                                     )
                                                     .append(
                                                         $('<option>', {
-                                                            value: 15,
-                                                            text: 15
+                                                            value: 150,
+                                                            text: 150
                                                         })
                                                     )
                                                     .append(
                                                         $('<option>', {
-                                                            value: 20,
-                                                            text: 20
+                                                            value: 200,
+                                                            text: 200
                                                         })
                                                     )
                                                     .append(
                                                         $('<option>', {
-                                                            value: 25,
-                                                            text: 25
+                                                            value: 260,
+                                                            text: 260
                                                         })
                                                     )
                                             )
@@ -335,7 +335,7 @@
                                                 .append(
                                                     $('<span/>')
                                                         .addClass('sr-only')
-                                                        .text('Previous')
+                                                        .text('Anterior')
                                                 )
                                         )
                                 )
@@ -353,7 +353,7 @@
                                                 .append(
                                                     $('<span/>')
                                                         .addClass('sr-only')
-                                                        .text('Next')
+                                                        .text('Proximo')
                                                 )
                                         )
                                 )

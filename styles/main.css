@@ -4203,6 +4203,7 @@ a.list-group-item.active > .badge,
    border: 5px solid #e5e5e5;
     border-radius: 0 !important;
     box-shadow: none !important;
+    
 }
 .panel > .panel-heading {
   font-size: 18px;

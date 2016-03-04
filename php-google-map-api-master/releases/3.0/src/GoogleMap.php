@@ -115,7 +115,7 @@ class GoogleMapAPI {
      *
      * @var string
      */
-    var $meta_viewport = "initial-scale=1.0, user-scalable=no";
+    var $meta_viewport = "initial-scale=1.0";
     
     /**
      * DEPRECATED: Google now has geocoding service.  
@@ -302,7 +302,7 @@ class GoogleMapAPI {
      *
      * @var string
      */
-    var $width = '800px';
+    var $width = '730px';
     
     /**
      * determines the map height

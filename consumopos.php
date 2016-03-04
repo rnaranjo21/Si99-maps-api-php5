@@ -26,10 +26,21 @@ header("refresh:60;url=$self");
     <link type="text/css" rel="stylesheet" href="styles/jquery.news-ticker.css">
          <link href="css/Estilo.css" rel="stylesheet" type="text/css"/>  
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-     <link href="css/sortable-theme-bootstrap.css" rel="stylesheet" type="text/css"/>
      <script type="text/javascript" src="js/ext/jquery-1.8.2.min.js"></script>
-    <script type="text/javascript" src="js/buscar-en-tabla.js"></script>
-     <script type="text/javascript" src="js/script.js"></script>
+     <link href="bootstrap-data-table-master/css/vendor/bootstrap.min.css" type="text/css" rel="stylesheet">
+    <link href="bootstrap-data-table-master/css/vendor/font-awesome.min.css" type="text/css" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600' rel='stylesheet' type='text/css'>
+    <link href="bootstrap-data-table-master/css/jquery.bdt.css" type="text/css" rel="stylesheet">
+    <link href="bootstrap-data-table-master/css/style.css" type="text/css" rel="stylesheet">
+     <script src="http://code.jquery.com/jquery-2.1.1.min.js" type="text/javascript"></script>
+<script src="bootstrap-data-table-master/js/vendor/bootstrap.min.js" type="text/javascript"></script>
+<script src="bootstrap-data-table-master/js/vendor/jquery.sortelements.js" type="text/javascript"></script>
+<script src="bootstrap-data-table-master/js/jquery.bdt.js" type="text/javascript"></script>
+<script>
+    $(document).ready( function () {
+        $('#bootstrap-table').bdt();
+    });
+</script>
   <title>Si99</title>
 </head>
 <div id="header-topbar-option-demo" class="page-header-topbar">
@@ -39,7 +50,7 @@ header("refresh:60;url=$self");
 <div class="topbar-main"></a>
             <ul class="nav navbar navbar-top-links navbar-right mbn">
                              <li><a href="#" id="btnExport"> <img src="imagenes/reportes.png" >Exportar Archivo a Excel</a></li>
-                            <li><a href="cerrar.php"> <img src="imagenes/logout.png" >Cerrar Sesion</a></li>
+                            <li><a href="cerrar.php"> <img src="imagenes/logout.png" >Cerrar Sesión</a></li>
                         </ul>
                     </li>
   </div>         
@@ -48,10 +59,10 @@ header("refresh:60;url=$self");
           
  <br>
  <body>
-  <div>
+  <div class="container-fluid">
    <div id="layer">
   <div id="layerc">
-    <p>Descargando Informaciòn...</p>
+    <p>Descargando Información...</p>
     <div id="layerClock"></div>
   </div>
 </div>
@@ -86,31 +97,16 @@ body {
   
 background-image: url('imagenes/loading.gif');
 }
-input[type="search"]{
-      padding: 5px;
-      background: url(search-white.png) no-repeat 10px 6px #fcfcfc;
-    border: 1px solid #d1d1d1;
-    font: bold 12px Arial,Helvetica,Sans-serif;
-    color: #bebebe;
-    padding: 6px 15px 6px 35px;
-    -webkit-border-radius: 20px;
-    -moz-border-radius: 20px;
-    border-radius: 20px;
-    text-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
-    -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15) inset;
-    -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15) inset;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15) inset;
-    -webkit-transition: all 0.7s ease 0s;
-    -moz-transition: all 0.7s ease 0s;
-    -o-transition: all 0.7s ease 0s;
-    transition: all 0.7s ease 0s;
-    }    
+
 .panel-body{
   height: 450px;
     overflow: scroll;
 }
-</style>
+td{
+  cursor: pointer;
+}
 
+</style>
 <?php
 
 //llamado WSDL
@@ -168,11 +164,8 @@ echo '<div class="panel panel-blue" style="background:#FFF;float:left">';
 echo '<br>';
 echo'<div class="panel-heading">Tabla de ubicaciones buses</div>';
 echo '<br>';
-echo '<input type="search" id="txtBuscar" autofocus placeholder="Digite el texto">';
-echo '<br>';
- echo ' <div class="panel-body">';
-
-echo '<table class="sortable-theme-bootstrap" id="tblTabla" data-sortable>' ;
+echo ' <div class="panel-body">';
+echo '<table class="table table-hover" id="bootstrap-table">' ;
  echo '<thead>';
 echo '<tr>';
 echo '<th>';
@@ -191,7 +184,7 @@ echo '</thead>';
 include_once("php-google-map-api-master/releases/3.0/src/GoogleMap.php");
 include_once("php-google-map-api-master/releases/3.0/src/JSMin.php");
 $MAP_OBJECT = new GoogleMapAPI(); $MAP_OBJECT->_minify_js = isset($_REQUEST["min"])?FALSE:TRUE;
-for($i=4;$i<count($vehi);$i++){
+for($i=1;$i<10;$i++){
 $vehiID=$orgVehi->GetVehiclesListResult->Vehicle[$i]->ID;
 $vehiDes=$orgVehi->GetVehiclesListResult->Vehicle[$i]->Description;
 $paramPosi= array("SpecificVehicleIDs"=>array("short"=>$vehiID));
@@ -207,7 +200,7 @@ $date = new DateTime($positime);
 $location=$orglocal->GetNearestLocationResult->OriginLongitude;
 $location1=$orglocal->GetNearestLocationResult->OriginLatitude;
 $location2=$orglocal->GetNearestLocationResult->LocationName;
-$marker_id=$MAP_OBJECT->addMarkerByCoords($posi2,$posi1,$vehiDes,$location2);
+$marker_id=$MAP_OBJECT->addMarkerByCoords($posi2,$posi1,$location2,$vehiDes);
 $marker_opener= "opener_".$marker_id;
 $MAP_OBJECT->addMarkerOpener($marker_id, $marker_opener);
  echo'  <tbody>';                                  
@@ -219,7 +212,7 @@ echo '<td>';
 print($location2);
 echo '</td>';
 echo '<td>';
-print $date->format('d/m/Y (H:i:s)');
+print $date->format('d/m/Y H:i:s');
 echo '</td>';
 echo '</tr>';
 echo'  </tbody>';  
@@ -250,5 +243,6 @@ echo '</div>';
  </div>
   
    </body>
-    </script>
-    
+
+</body>
+</html>   

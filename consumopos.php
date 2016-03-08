@@ -184,7 +184,7 @@ echo '</thead>';
 include_once("php-google-map-api-master/releases/3.0/src/GoogleMap.php");
 include_once("php-google-map-api-master/releases/3.0/src/JSMin.php");
 $MAP_OBJECT = new GoogleMapAPI(); $MAP_OBJECT->_minify_js = isset($_REQUEST["min"])?FALSE:TRUE;
-for($i=1;$i<10;$i++){
+for($i=1;$i<count($vehi);$i++){
 $vehiID=$orgVehi->GetVehiclesListResult->Vehicle[$i]->ID;
 $vehiDes=$orgVehi->GetVehiclesListResult->Vehicle[$i]->Description;
 $paramPosi= array("SpecificVehicleIDs"=>array("short"=>$vehiID));

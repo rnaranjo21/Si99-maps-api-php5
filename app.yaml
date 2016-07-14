@@ -1,3 +1,4 @@
+application: default
 runtime: php55
 api_version: 1
 
@@ -6,5 +7,16 @@ handlers:
   static_files: favicon.ico
   upload: favicon\.ico
 
+- url: /css
+  static_dir: css
+
+- url: /imagenes
+  static_dir: imagenes
+  
+- url: /styles
+  static_dir: styles
+
+
 - url: /.*
   script: login.php
+

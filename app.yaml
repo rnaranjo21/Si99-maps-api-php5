@@ -1,6 +1,7 @@
 application: default
 runtime: php55
 api_version: 1
+threadsafe: true
 
 handlers:
 - url: /favicon\.ico
@@ -12,11 +13,14 @@ handlers:
 
 - url: /imagenes
   static_dir: imagenes
-  
+
 - url: /styles
   static_dir: styles
 
-
 - url: /.*
   script: login.php
-
+- url: /.*
+  script: validar.php
+ 
+- url: /.*
+  script: consumopos.php 
